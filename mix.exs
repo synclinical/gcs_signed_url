@@ -12,7 +12,6 @@ defmodule GcsSignedUrl.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       elixirc_options: [warnings_as_errors: true],
       package: package(),
-      preferred_cli_env: cli_env(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
@@ -32,15 +31,8 @@ defmodule GcsSignedUrl.MixProject do
     ]
   end
 
-  defp cli_env do
-    [
-      coveralls: :test,
-      "coveralls.detail": :test,
-      "coveralls.post": :test,
-      "coveralls.html": :test,
-      "coveralls.travis": :test,
-      "coveralls.github": :test
-    ]
+  def cli do
+    [preferred_envs: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test, "coveralls.travis": :test, "coveralls.github": :test]]
   end
 
   # Run "mix help deps" to learn about dependencies.
@@ -51,7 +43,7 @@ defmodule GcsSignedUrl.MixProject do
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:excoveralls, "~> 0.13", only: :test},
       {:mox, "~> 1.0", only: :test},
-      {:httpoison, "~> 2.0"},
+      {:httpoison, "~> 3.0"},
       {:jason, "~> 1.2"}
     ]
   end
